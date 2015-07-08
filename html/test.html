@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example - example-example91-production</title>
+    <link href="../css/animations.css" rel="stylesheet" type="text/css">
+
+
+    <script type="text/javascript" src="../js/pub/angular.js"></script>
+    <script type="text/javascript" src="../js/pub/angular-animate.js"></script>
+    <script>
+        var app=angular.module('ngAnimate',[]);
+        app.config(function($httpProvider){
+            $httpProvider.defaults.useXDomain=true;
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+            $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+        });
+        app.controller('testController',function($scope,$http){
+           $scope.doTest=function(){
+               console.log('test');
+               var url='http://www.gaohongtao.cn/iw/product/list';
+               var data={
+                   "strategy":"ladies_shoes",
+                   "lastSymbol":"20150704112320",
+                   "pageSize":2,
+                   "condition":{
+                       "size":[
+                           35,
+                           36,
+                           36.5,
+                           37
+                       ],
+                       "colour":[
+                           "红",
+                           "银白",
+                           "黑"
+                       ],
+                       "type":[
+                           "wide",
+                           "narrow"
+                       ],
+                       "heel_height":[
+                           "3-5",
+                           "6-9"
+                       ]
+                   }
+               };
+               $http.post(url,data).success(function(data){
+                   console.log('success');
+                   console.log(data);
+                   console.log(new Date(data.itemList[0].onsale_date));
+                   console.log(new Date(data.itemList[0].onsale_date).getFullYear());
+                   console.log(new Date(data.itemList[0].onsale_date).getMonth());
+                   console.log(new Date(data.itemList[0].onsale_date).getDate());
+                   console.log(new Date(data.itemList[0].onsale_date).getHours());
+                   console.log(new Date(data.itemList[0].onsale_date).getMinutes());
+                   console.log(new Date(data.itemList[0].onsale_date).getSeconds());
+               })
+           };
+            $scope.getCode=function(name){
+                var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+                console.log(window.location);
+                var r=window.location.search.substr(1).match(reg);
+                console.log(reg);
+                console.log(r);
+                if(r!=null){
+                    console.log(unescape(r[2]));
+                    return unescape(r[2]);
+                }else{
+                    return null;
+                }
+            };
+        });
+
+    </script>
+
+
+</head>
+<body ng-app="ngAnimate">
+    <div ng-controller="testController">
+        <button type="button" ng-click="doTest()">test</button>
+        <button type="button" ng-click="getCode('code')">testCode</button>
+    </div>
+    <row>
+        <col></col>
+        <col></col>
+    </row>
+    <row>
+        <col></col>
+        <col></col>
+    </row>
+    <row>
+        <col></col>
+        <col></col>
+    </row>
+</body>
+</html>
+

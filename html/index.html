@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link href="../css/angular-carousel.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../js/pub/angular.js"></script>
+    <script type="text/javascript" src="../js/pub/angular-animate.js"></script>
+    <script type="text/javascript" src="../js/pub/angular-touch.js"></script>
+    <script type="text/javascript" src="../js/pub/angular-carousel.js"></script>
+    <script type="text/javascript" src="../js/pub/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../js/main/main.js"></script>
+    <script type="text/javascript" src="../js/main/mainDirective.js"></script>
+    <script type="text/javascript" src="../js/main/mainRoute.js"></script>
+    <script type="text/javascript" src="../js/main/mainController.js"></script>
+    <script type="text/javascript" src="../js/items/itemDirective.js"></script>
+    <script type="text/javascript" src="../js/items/itemListController.js"></script>
+</head>
+    <body ng-app="main">
+        <div ui-view="main"></div>
+        <script type="text/ng-template" id="main.html">
+            <div>
+                <web-head></web-head>
+                <carousel></carousel>
+                <catalog-list></catalog-list>
+            </div>
+        </script>
+        <script type="text/ng-template" id="webHead.html">
+            <div>head</div>
+        </script>
+        <script type="text/ng-template" id="carousel.html">
+            <div>
+                <ul rn-carousel>
+                    <li ng-repeat="slide in slides track by slide.id" ng-class="'id-' + slide.id" ng-click="doStrategy(slide.strategy)">
+                        <div ng-style="{'background-image': 'url(' + slide.img + ')'}"  class="bgimage">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </script>
+        <script type="text/ng-template" id="catalogList.html">
+            <div>
+                <ul>
+                    <li ng-repeat="slide in slides track by slide.id">{{slide.strategy}}</li>
+                </ul>
+            </div>
+        </script>
+        <script type="text/ng-template" id="itemList.html">
+            <div>
+                <web-head></web-head>
+                <items></items>
+            </div>
+        </script>
+        <script type="text/ng-template" id="items.html">
+            <div>
+                <article class="col-40 center">
+                    <section  class="row-50">1</section >
+                    <section  class="row-50">2</section >
+                </article>
+                <article class="col-40 center">
+                    <section  class="row-50">1</section >
+                    <section  class="row-50">2</section >
+                </article>
+            </div>
+        </script>
+    </body>
+</html>

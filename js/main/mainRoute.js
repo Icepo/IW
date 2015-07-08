@@ -1,0 +1,28 @@
+/**
+ * Created by liuzhangjun on 2015-7-4.
+ */
+main.config(function($stateProvider,$urlRouterProvider){
+    $urlRouterProvider.otherwise('/main');
+    $stateProvider
+        .state('main',{
+            url:'/main',
+            views:{
+                'main':{
+                    templateUrl:'main.html',
+                    controller:'mainController'
+                }
+            }
+        })
+        .state('itemList',{
+            url:'/itemList',
+            views:{
+                'main':{
+                    templateUrl:'itemList.html',
+                    controller:'itemListController'
+                }
+            }
+        })
+}).run(['$state','$timeout',function($state,$timeout){
+    console.log('main');
+    $state.go('main');
+}]);
